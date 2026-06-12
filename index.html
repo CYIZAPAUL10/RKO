@@ -74,10 +74,12 @@
       color: var(--rko-blue);
       display: flex;
       align-items: center;
+      gap: 10px;
     }
     .logo-icon {
+      background: var(--rko-yellow);
       color: var(--rko-blue);
-      width: 60px; height: 60px;
+      width: 40px; height: 40px;
       display: flex; align-items: center; justify-content: center;
       border-radius: 50%;
       font-weight: 800;
@@ -108,6 +110,18 @@
       color: var(--rko-blue);
     }
     .btn-yellow:hover { background: #dcb00c; }
+    
+    /* Hamburger Icon (Hidden on Desktop) */
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      color: var(--rko-blue);
+      cursor: pointer;
+      transition: color var(--transition);
+    }
+    .hamburger:hover {
+      color: var(--rko-green);
+    }
 
     /* ===== HERO ===== */
     .hero {
@@ -304,20 +318,59 @@
       opacity: 0.7;
     }
 
-    /* Responsive */
+    /* ===== RESPONSIVE & MOBILE MENU ===== */
     @media (max-width: 768px) {
       .grid-2, .footer-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; } /* Mobile menu toggle logic omitted for brevity */
+      
+      .hamburger {
+        display: block;
+      }
+      
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: -100%; /* Hidden off-screen by default */
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        padding: 30px 5%;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        transition: left 0.3s ease-in-out;
+      }
+      
+      .nav-links.active {
+        left: 0; /* Slide in when active */
+      }
+      
+      .nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid var(--light-bg);
+      }
+      
+      .nav-links a.btn {
+        margin-top: 15px;
+        border: none;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- NAVIGATION -->
   <nav>
     <div class="logo">
-      <div class="logo-icon"><img src="logo.png" alt=""></div>
+      <div class="logo-icon">RK</div>
+      RKO
     </div>
-    <div class="nav-links">
+    
+    <!-- Hamburger Icon -->
+    <div class="hamburger" id="hamburger-menu">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+    
+    <div class="nav-links" id="nav-links">
       <a href="#about">About</a>
       <a href="#korfball">Korfball</a>
       <a href="#impact">Impact</a>
@@ -326,12 +379,14 @@
     </div>
   </nav>
 
+  <!-- HERO -->
   <header class="hero">
     <h1>Promoting Inclusion, Equality, and Youth Development <span>Through Sport</span></h1>
     <p>We build a sports culture rooted in teamwork, respect, and equal opportunity for all.</p>
     <a href="#about" class="btn btn-yellow">Discover Our Mission</a>
   </header>
 
+  <!-- ABOUT & MISSION -->
   <section id="about" class="container">
     <h2 class="section-title">Who <span>We Are</span></h2>
     <div class="grid-2">
@@ -353,6 +408,7 @@
     </div>
   </section>
 
+  <!-- WHAT IS KORFBALL / GENDER EQUALITY -->
   <section id="korfball" style="background: var(--white); padding: 80px 0;">
     <div class="container" style="padding-top: 0; padding-bottom: 0;">
       <h2 class="section-title">What is <span>Korfball?</span></h2>
@@ -377,6 +433,7 @@
     </div>
   </section>
 
+  <!-- HIGHLIGHTS / ACHIEVEMENTS -->
   <section id="impact" class="highlights">
     <div class="highlights-grid">
       <div class="highlight-item">
@@ -385,7 +442,7 @@
         <p>We introduce korfball in schools, starting in Musanze District.</p>
       </div>
       <div class="highlight-item">
-        <i class="fa-solid fa-pen"></i>
+        <i class="fa-solid fa-whistle"></i>
         <h4>Capacity Building</h4>
         <p>We conduct basic training for players, coaches, and referees.</p>
       </div>
@@ -402,6 +459,7 @@
     </div>
   </section>
 
+  <!-- GALLERY -->
   <section id="gallery" class="container">
     <h2 class="section-title">Our <span>Gallery</span></h2>
     <p style="text-align: center; max-width: 700px; margin: 0 auto;">See Rwanda Korfball Organization in action across schools and communities.</p>
@@ -446,6 +504,7 @@
     </div>
   </section>
 
+  <!-- PARTNERSHIPS -->
   <section class="container partnerships">
     <h2 class="section-title">Partner <span>With RKO</span></h2>
     <p style="text-align: center; max-width: 800px; margin: 0 auto;">
@@ -460,6 +519,7 @@
     </div>
   </section>
 
+  <!-- FOOTER & CONTACT -->
   <footer id="contact">
     <div class="footer-grid">
       <div>
@@ -468,11 +528,12 @@
           Sport transforms lives. Join us in building a Rwanda where every young person—boy or girl—holds equal opportunity to play, grow, and succeed.
         </p>
         
+        <!-- Social Media Icons -->
         <div class="social-icons">
-          <a target="_blank" href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a target="_blank" href="https://x.com/RwandaKorfkm" title="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-          <a target="_blank" href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a target="_blank" href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" title="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
         </div>
       </div>
       <div>
@@ -502,5 +563,35 @@
     </div>
   </footer>
 
+  <!-- JAVASCRIPT FOR MOBILE MENU -->
+  <script>
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const navLinks = document.getElementById('nav-links');
+    const menuIcon = hamburgerMenu.querySelector('i');
+
+    // Toggle menu open/close
+    hamburgerMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      
+      // Swap icon between hamburger and X
+      if (navLinks.classList.contains('active')) {
+        menuIcon.classList.remove('fa-bars');
+        menuIcon.classList.add('fa-xmark');
+      } else {
+        menuIcon.classList.remove('fa-xmark');
+        menuIcon.classList.add('fa-bars');
+      }
+    });
+
+    // Close menu when a link is clicked
+    const links = navLinks.querySelectorAll('a');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuIcon.classList.remove('fa-xmark');
+        menuIcon.classList.add('fa-bars');
+      });
+    });
+  </script>
 </body>
 </html>
